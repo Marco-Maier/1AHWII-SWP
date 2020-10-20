@@ -1,10 +1,7 @@
 h1 { /* Alle Elemente stylen */
     /* Unteren Rand 1px breit, strichliert und schwarz zeichnen*/
     border-bottom: 1px dashed black;
-    color: magenta;
-}
-ol {
-    color: green;
+    color: steelblue
 }
 .date{
     color: red;font-weight: bold;
