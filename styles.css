@@ -1,7 +1,7 @@
 h1 { /* Alle Elemente stylen */
     /* Unteren Rand 1px breit, strichliert und schwarz zeichnen*/
     border-bottom: 1px dashed black;
-    color: steelblue
+    color: darkgreen;
 }
 ol {
     color: green;
