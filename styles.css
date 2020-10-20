@@ -3,6 +3,9 @@ h1 { /* Alle Elemente stylen */
     border-bottom: 1px dashed black;
     color: steelblue
 }
+ol {
+    color: green;
+}
 .date{
     color: red;font-weight: bold;
 }
