@@ -1,0 +1,53 @@
+table {
+    border-collapse: collapse;
+}
+td,th{
+    border: 1px solid grey;
+    padding: 10px;
+    width: 300px;
+    font-weight: 700;
+    vertical-align: middle;
+    text-align: center;
+}
+.time{
+    text-align: left;
+}
+.ggp{
+    background-color: rgb(121, 121, 245);
+}
+.deutsch{
+    background-color: lightgreen
+}
+.nawi{
+    background-color: yellow
+}
+.mt{
+    background-color: teal;
+}
+.mathe{
+    background-color: yellowgreen;
+}
+.swp{
+    background-color: wheat;
+}
+.religion{
+    background-color: orange;
+}
+.bet{
+    background-color: gray;
+}
+.english{
+    background-color: red;
+}
+.infi{
+    background-color: sandybrown;
+}
+.werkstatt{
+    background-color: lightblue;
+}
+.bsp{
+    background-color: pink;
+}
+.sopk{
+    background-color: lightpink;
+}
