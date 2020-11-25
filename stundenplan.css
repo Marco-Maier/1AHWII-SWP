@@ -3,11 +3,11 @@ table {
 }
 td,th{
     border: 1px solid grey;
-    padding: 10px;
+    padding: 10px; /*Weite nach unten*/
     width: 300px;
-    font-weight: 700;
-    vertical-align: middle;
-    text-align: center;
+    font-weight: 700; /*Dicke*/
+    vertical-align: middle; /*verticale position*/
+    text-align: center; /*Text position */
 }
 .time{
     text-align: left;
