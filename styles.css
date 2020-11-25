@@ -1,6 +1,6 @@
 h1 { /* Alle Elemente stylen */
     /* Unteren Rand 1px breit, strichliert und schwarz zeichnen*/
-    border-bottom: 1px dashed black;
+    border-bottom: 1px dashed black; /*unterstreichen*/
     color: steelblue
     
 }
@@ -13,4 +13,7 @@ table {
 td,th{
     border: 1px solid grey;
     padding: 25px; /* Abstand in jede Seite*/
+}
+li{
+    font-size: large; /* Schriftgröße*/
 }
