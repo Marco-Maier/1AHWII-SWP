@@ -1,0 +1,20 @@
+h1{
+    font-size: xx-large;
+    border-bottom: 2px dashed black;
+    size: 100px;
+}
+label{
+    font-size: large;
+}
+.unterschrift{
+    font-weight: 600;
+}
+table {
+    border-collapse: collapse;
+    position: relative;
+    left: 300px;
+ }
+ td,th{
+    border: 1px solid grey;
+    padding: 25px; /* Abstand in jede Seite*/
+}

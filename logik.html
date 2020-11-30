@@ -1,0 +1,91 @@
+<script>
+    let form = document.querySelector("form")
+    form.onsubmit = event =>
+    {
+        // alert("Formular wird abgesendet")
+        event.preventDefault()
+
+        try
+        {
+            let getInput = name =>
+            {
+                let element = document.querySelector(`[name=${name}]`)
+                if (!element)
+                {
+                    throw `Kein Eingabefeld mit dem Namen '${name}' gefunden.`
+                }
+                return element
+            }
+            let getInputs = name =>
+            {
+                let elements = Array.from(document.querySelectorAll(`[name=${name}]`))
+                if (!elements.length)
+                {
+                    throw `Kein Eingabefeld mit dem Namen '${name}' gefunden.`
+                }
+                return elements
+            }
+            let getInputValue = name => getInput(name).value
+            let getRadioButtonValue = name =>
+            {
+                let checkedElements = getInputs(name).filter(e => e.checked)
+                if (!checkedElements.length)
+                {
+                    throw `Für Eingabefeld '${name}' muss es eine Auswahl geben (Standardauswahl mit Attribut 'checked' festlegen).`
+                }
+                return checkedElements[0].value
+            }
+            let getCheckboxValues = name => getInputs(name).filter(e => e.checked).map(e => e.value)
+            let getComboboxValue = name =>
+            {
+                let element = getInput(name).querySelector("option:not(:first-of-type):checked")
+                return element ? element.value : ""
+            }
+
+            let firstName = getInputValue("firstName")
+            let lastName = getInputValue("lastName")
+            let birthday = getInputValue("birthday")
+            let gender = getRadioButtonValue("gender")
+            let hobbies = getCheckboxValues("hobbies")
+            let favoriteSchoolSubject = getComboboxValue("favoriteSchoolSubject")
+            let info = getInputValue("info")
+            let favoriteColor = getInputValue("favoriteColor")
+
+            if (!firstName || !lastName)
+            {
+                alert("Vorname und Nachname bitte ausfüllen.")
+                return
+            }
+
+            console.log(`Adding friend: FirstName = ${firstName}, LastName = ${lastName}, Birthday = ${birthday}, Gender = ${gender}, Hobbies = ${hobbies.join(", ")}, Favorite school subject = ${favoriteSchoolSubject}, Info = ${info}, FavoriteColor = ${favoriteColor}`)
+
+            let tableBody = document.querySelector("table tbody")
+            let row = document.createElement("tr")
+            
+            let addCell = text =>
+            {
+                let cell = document.createElement("td")
+                cell.innerText = text
+                return row.appendChild(cell)
+            }
+
+            addCell(firstName)
+            addCell(lastName)
+            addCell(birthday || "N/A")
+            addCell(gender)
+            addCell(hobbies.join(", ") || "-")
+            addCell(favoriteSchoolSubject || "-")
+            addCell(info || "-")
+            let favoriteColorCell = addCell("")
+            favoriteColorCell.style.background = favoriteColor
+
+            tableBody.appendChild(row)
+            
+            form.reset()
+        }
+        catch (e)
+        {
+            alert(`FEHLER: ${e}`)
+        }
+    }
+</script>
