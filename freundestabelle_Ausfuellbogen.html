@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de">
+ <head>
+    <title>Freundestabelle</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="freundestabelle.css">
+ </head>
+<body>
+    <h1>Meine Freunde</h1>
+    <form>
+<p>
+    <label>
+        <span class="unterschrift">Vorname:</span>
+        <input placeholder="Vorname des Freundes" type="text" name="firstName" > <!--placeholder= Platzhalter-->
+    </label>
+</p>
+<p>
+    <label>
+        <span class="unterschrift">Nachname:</span>
+        <input type="text" name="lastName" placeholder="Nachname des Freundes" >
+    </label>
+</p>
+<p> 
+    <label>
+        <span class="unterschrift">Geschlecht:</span>
+        <span class="radio"><input type="radio" name="gender" checked value="männlich"></span>männlich
+    </label>
+    <label>
+        <span class="radio"><input type="radio" name="gender" value="weiblich"></span>weiblich
+    </label>
+    <label>
+        <span class="radio"><input type="radio" name="gender" value="divers"></span>divers
+    </label>
+</p>
+<p>
+    <label>
+        <span class="unterschrift">Geburtstag:</span>
+        <input type="date" name="birthday">
+    </label>
+</p>
+
+<p>
+    <label>
+        <span class="unterschrift">Hobbies:</span>
+        <span class="checkbox"><input type="checkbox" name="hobbies" value="Fußball"></span>Fußball
+    </label>
+    <label>
+        <span class="checkbox"><input type="checkbox" name="hobbies" value="Hockey"></span>Hockey
+    </label>
+    <label>
+        <span class="checkbox"><input type="checkbox" name="hobbies" value="Basketball"></span>Basketball
+    </label>
+    <label>
+        <span class="checkbox"><input type="checkbox" name="hobbies" value="Tennis"></span>Tennis
+    </label>
+    <label>
+        <span class="checkbox"><input type="checkbox" name="hobbies" value="Anderes"></span>Anderes
+    </label>
+</p>
+<p>
+    <label>
+        <span class="unterschrift">Lieblingsfach:</span>
+        <select name="favoriteSchoolSubject">
+            <option>--Bitte auswählen--</option>
+            <option>Mathe</option>
+            <option>Deutsch</option>
+            <option>SWP</option>
+            <option>Betriebstechnik</option>
+            <option>MT</option>
+            <option>Informatik</option>
+            <option>Bewegung und Sport</option>
+        </select>
+    </label>
+</p>
+
+<p>
+    <label>
+        <span class="unterschrift">Lieblingsfarbe:</span>
+        <input type="color" name="favoriteColor">
+    </label>
+</p>
+
+<p>
+    <label>
+        <span class="unterschrift" style="vertical-align: top;">Bemerkungen:</span>
+        <textarea name="info" placeholder="Zusatzinformationen des Freundes, z.B. von wo du ihn kennst usw." cols="50" rows="3"></textarea> <!--cols= Spalten horizontal; rows= Reihen vertikal -->
+    </label>
+</p>
+<p>
+    <label>
+        <input type="submit" value="Freund hinzufügen">
+    </label>
+</p>
+
+</form>
+<table>
+    <thead> <!--Kopfzeilenbereich-->
+     <tr><!--Tabellenzeile-->
+        <th>Vorname</th><!--Überschrift-->
+        <th>Nachname</th>
+        <th>Geschlecht</th>
+        <th>Geburtsdatum</th>
+        <th>Hobbies</th><!--calspan= Wie viele Zeilen es überspannt-->
+        <th>Lieblingsfach</th>
+        <th>Lieblingsfarbe</th>
+        <th>Bemerkungen</th>
+     </tr>
+    </thead>
+    <tbody><!--Tabellenbereich-->
+     <tr>
+        <td>Felix</td> <!--Datenbereich-->
+        <td>Pöll</td>
+        <td>männlich</td>
+        <td>2005</td>
+        <td>Fußball</td>
+        <td>SWP</td>
+        <td style="background-color: blue;"></td> <!--rowspan= Reihe überspannen-->
+        <td></td>
+     </tr>
+     <tr>
+         <td>Marko</td>
+         <td>Krezic</td>
+         <td>männlich</td>
+         <td>2005</td>
+         <td>Fußball</td>
+         <td>Informatik</td>
+         <td style="background-color: sandybrown;"></td>
+         <td></td> <!-- Auskommentieren strg+# -->
+     </tr>
+     <tr>
+         <td>Johannes</td>
+         <td>Pohn</td>
+         <td>männlich</td>
+         <td>2005</td>
+         <td>Fußball</td>
+         <td>SWP</td>
+         <td style="background-color: brown;"></td>
+         <td ></td>
+     </tr>
+     <tr>
+         <td>Simon</td>
+         <td>Hufnagel</td>
+         <td>männlich</td>
+         <td>2005</td>
+         <td>Hockey</td>
+         <td>Deutsch</td>
+         <td style="background-color: yellow;"></td>
+         <td></td>
+         <!-- <td>SWP</td> -->
+     </tr>
+     <tr>
+         <td>Simon</td>
+         <td>Kölblinger</td>
+         <td>männlich</td>
+         <td>2006</td>
+         <td>Tennis</td>
+         <td>Mathe</td>
+         <td style="background-color: yellowgreen;"></td>
+         <td></td>
+         <!-- <td>SWP</td> -->
+     </tr>
+     <tr>
+         <td>David</td>
+         <td>Lamedschwandtner</td>
+         <td>männlich</td>
+         <td>2006</td>
+         <td>Hockey</td>
+         <td>Betriebstechnik</td>
+         <td style="background-color: violet;"></td>
+         <td></td>
+         <!-- <td>SWP</td> -->
+     </tr>
+     <tr>
+         <td>Martha</td>
+         <td>Spitzbart</td>
+         <td>weiblich</td>
+         <td>2006</td>
+         <td>Basketball</td>
+         <td>MT</td>
+         <td style="background-color: pink;"></td>
+         <td></td>
+         <!-- <td>SWP</td> -->
+     </tr>
+     <tr>
+         <td>Fabian</td>
+         <td>Fellinger</td>
+         <td>männlich</td>
+         <td>2005</td>
+         <td>Fußball</td>
+         <td>Bewegung und Sport</td>
+         <td style="background-color: purple;"></td>
+         <td></td>
+         <!-- <td>SWP</td> -->
+     </tr>
+     <tr> <!--Datenspitze-->
+         <td>Dorian</td>
+         <td>Simon</td>
+         <td>männlich</td>
+         <td>2006</td>
+         <td>Fußball</td>
+         <td>Mathe</td>
+         <td style="background-color: orange;"></td>
+         <td></td>
+         <!-- <td>SWP</td> -->
+     </tr>
+     <tr>
+         <td>Konstantin</td>
+         <td>Harzfeld</td>
+         <td>männlich</td>
+         <td>2006</td>
+         <td>Fußball</td>
+         <td>Deutsch</td>
+         <td style="background-color: plum;"></td>
+         <td></td>
+         <!-- <td>SWP</td> -->
+     </tr>
+     <tr>
+         <td>Lukas</td>
+         <td>Kück</td>
+         <td>männlich</td>
+         <td>2006</td>
+         <td>Tennis</td>
+         <td>Bewegung und Sport</td>
+         <td style="background-color: gold;"></td>
+         <td></td>
+         <!-- <td>SWP</td> -->
+     </tr>
+</table>
+<script>
+    let form = document.querySelector("form")
+    form.onsubmit = event =>
+    {
+        // alert("Formular wird abgesendet")
+        event.preventDefault()
+
+        try
+        {
+            let getInput = name =>
+            {
+                let element = document.querySelector(`[name=${name}]`)
+                if (!element)
+                {
+                    throw `Kein Eingabefeld mit dem Namen '${name}' gefunden.`
+                }
+                return element
+            }
+            let getInputs = name =>
+            {
+                let elements = Array.from(document.querySelectorAll(`[name=${name}]`))
+                if (!elements.length)
+                {
+                    throw `Kein Eingabefeld mit dem Namen '${name}' gefunden.`
+                }
+                return elements
+            }
+            let getInputValue = name => getInput(name).value
+            let getRadioButtonValue = name =>
+            {
+                let checkedElements = getInputs(name).filter(e => e.checked)
+                if (!checkedElements.length)
+                {
+                    throw `Für Eingabefeld '${name}' muss es eine Auswahl geben (Standardauswahl mit Attribut 'checked' festlegen).`
+                }
+                return checkedElements[0].value
+            }
+            let getCheckboxValues = name => getInputs(name).filter(e => e.checked).map(e => e.value)
+            let getComboboxValue = name =>
+            {
+                let element = getInput(name).querySelector("option:not(:first-of-type):checked")
+                return element ? element.value : ""
+            }
+
+            let firstName = getInputValue("firstName")
+            let lastName = getInputValue("lastName")
+            let gender = getInputValue ("gender")
+            let birthday = getInputValue("birthday")
+            let hobbies = getCheckboxValues("hobbies")
+            let favoriteSchoolSubject = getComboboxValue("favoriteSchoolSubject")
+            let favoriteColor = getInputValue("favoriteColor")
+            let info = getInputValue("info")
+           
+
+            if (!firstName || !lastName)
+            {
+                alert("Vorname und Nachname bitte ausfüllen.")
+                return
+            }
+
+            console.log(`Adding friend: FirstName = ${firstName}, LastName = ${lastName}, Birthday = ${birthday}, Gender = ${gender}, Hobbies = ${hobbies.join(", ")}, Favorite school subject = ${favoriteSchoolSubject}, Info = ${info}, FavoriteColor = ${favoriteColor}`)
+
+            let tableBody = document.querySelector("table tbody")
+            let row = document.createElement("tr")
+            
+            let addCell = text =>
+            {
+                let cell = document.createElement("td")
+                cell.innerText = text
+                return row.appendChild(cell)
+            }
+
+            addCell(firstName)
+            addCell(lastName)
+            addCell(gender)
+            addCell(birthday || "A/N")
+            addCell(hobbies.join(", ") || "-")
+            addCell(favoriteSchoolSubject || "-")
+            let favoriteColorCell = addCell("")
+            favoriteColorCell.style.background = favoriteColor
+            addCell(info || "-")
+
+            tableBody.appendChild(row)
+            
+            form.reset()
+        }
+        catch (e)
+        {
+            alert(`FEHLER: ${e}`)
+        }
+    }
+</script>
+</body>
+</html>

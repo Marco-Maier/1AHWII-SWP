@@ -12,9 +12,10 @@ label{
 table {
     border-collapse: collapse;
     position: relative;
-    left: 300px;
+    left: 85px;
  }
  td,th{
     border: 1px solid grey;
     padding: 25px; /* Abstand in jede Seite*/
 }
+
