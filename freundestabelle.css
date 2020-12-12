@@ -1,7 +1,11 @@
 h1{
     font-size: xx-large;
-    border-bottom: 2px dashed black;
+    border-bottom: 2px dashed white;
     size: 100px;
+    color: white;
+}
+p{
+    color: white;
 }
 label{
     font-size: large;
@@ -17,5 +21,9 @@ table {
  td,th{
     border: 1px solid grey;
     padding: 25px; /* Abstand in jede Seite*/
+    background-color: white;
 }
-
+html{
+    background-image: url(itl.cat_no-copyright-wallpapers_1365453.png);
+    background-size: cover;
+}

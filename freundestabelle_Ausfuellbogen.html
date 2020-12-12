@@ -38,7 +38,6 @@
         <input type="date" name="birthday">
     </label>
 </p>
-
 <p>
     <label>
         <span class="unterschrift">Hobbies:</span>
@@ -52,6 +51,12 @@
     </label>
     <label>
         <span class="checkbox"><input type="checkbox" name="hobbies" value="Tennis"></span>Tennis
+    </label>
+    <label>
+        <input type="checkbox" name="hobbies" value="Kochen">Kochen
+    </label>
+    <label>
+       <input type="checkbox" name="hobbies" value="Tanzen">Tanzen
     </label>
     <label>
         <span class="checkbox"><input type="checkbox" name="hobbies" value="Anderes"></span>Anderes
@@ -69,10 +74,11 @@
             <option>MT</option>
             <option>Informatik</option>
             <option>Bewegung und Sport</option>
+            <option>Kochen</option>
+            <option>Tanzen</option>
         </select>
     </label>
 </p>
-
 <p>
     <label>
         <span class="unterschrift">Lieblingsfarbe:</span>
@@ -182,6 +188,26 @@
          <!-- <td>SWP</td> -->
      </tr>
      <tr>
+         <td>Lena</td>
+         <td>Müller</td>
+         <td>weiblich</td>
+         <td>2006-06-23</td>
+         <td>Tanzen</td>
+         <td>Tanzen</td>
+         <td style="background-color: lightgreen;"></td>
+         <td></td>
+     </tr>
+     <tr>
+         <td>Eva</td>
+         <td>Ensi</td>
+         <td>weiblich</td>
+         <td>2006-05-18</td>
+         <td>Kochen</td>
+         <td>Kochen</td>
+         <td style="background-color: black;"></td>
+         <td></td>
+     </tr>
+     <tr>
          <td>Fabian</td>
          <td>Fellinger</td>
          <td>männlich</td>
@@ -272,7 +298,7 @@
 
             let firstName = getInputValue("firstName")
             let lastName = getInputValue("lastName")
-            let gender = getInputValue ("gender")
+            let gender = getRadioButtonValue ("gender")
             let birthday = getInputValue("birthday")
             let hobbies = getCheckboxValues("hobbies")
             let favoriteSchoolSubject = getComboboxValue("favoriteSchoolSubject")
