@@ -7,9 +7,6 @@ h1{
 p{
     color: white;
 }
-label{
-    font-size: large;
-}
 .unterschrift{
     font-weight: 600;
 }
@@ -25,4 +22,5 @@ table {
 }
 html{
     background-image: url(itl.cat_no-copyright-wallpapers_1365453.png);
+    background-size: cover;
 }
