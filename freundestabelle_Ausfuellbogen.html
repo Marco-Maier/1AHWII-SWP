@@ -191,7 +191,7 @@
          <td>Lena</td>
          <td>Müller</td>
          <td>weiblich</td>
-         <td>2006-06-23</td>
+         <td>23.06.2006</td>
          <td>Tanzen</td>
          <td>Tanzen</td>
          <td style="background-color: lightgreen;"></td>
@@ -201,7 +201,7 @@
          <td>Eva</td>
          <td>Ensi</td>
          <td>weiblich</td>
-         <td>2006-05-18</td>
+         <td>18.05.2006</td>
          <td>Kochen</td>
          <td>Kochen</td>
          <td style="background-color: black;"></td>
@@ -327,7 +327,7 @@
             addCell(firstName)
             addCell(lastName)
             addCell(gender)
-            addCell(birthday || "A/N")
+            addCell(new Date(birthday).toLocaleDateString("de-AT") || "N/A")<!--dd.mm.yyyy-->
             addCell(hobbies.join(", ") || "-")
             addCell(favoriteSchoolSubject || "-")
             let favoriteColorCell = addCell("")
