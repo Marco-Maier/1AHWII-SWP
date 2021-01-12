@@ -1,6 +1,6 @@
 let playerName; //let playerName = "Max Mustermann", Score = "100";
 playerName = "Max Musterman";
-console.log( typeof playerName);
+console.log( typeof playerName);//wird angezeigt in console
 playerName = "Lol"
 console.log(playerName);
 
@@ -17,7 +17,7 @@ Name = 21;
 
 console.log(Name);
 const age = 23;
-const ageAsString = age.toString();
+const ageAsString = age.toString(); //umwandeln in zu textfeld (String)
 console.log(age);
 console.log(ageAsString)
 console.log(typeof age)
@@ -25,7 +25,7 @@ console.log(typeof ageAsString)
 
 
 const AgeAsString = "21.2"
-const Age = parseFloat (AgeAsString)
+const Age = parseFloat (AgeAsString) //Wird zu einer ganzen Zahl
 console.log(Age);
 console.log(AgeAsString)
 console.log(typeof Age)

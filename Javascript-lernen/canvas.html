@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Auf einem Canvas zeichnen</title>
+    <style>
+        #scene {
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Auf einem Canvas zeichnen</h1>
+    <canvas id="scene" width="500" height="500"><!-- id benutzt man für verlinkung und dann mit #-->
+        Dein Browser unterstützt das canvas-Element nicht.
+    </canvas>
+    <script>/*oder so nur in der Klamma*/  // commentare java script mit // in ganzer Zeile
+    /**@type {CanvasRenderingContext2D}*/
+    let ctx = scene.getContext("2d") //2D-Zeichencontext des Canvas holen und als Context definieren(speichern)
+    
+    ctx.fillRect(10, 5, 20, 10) //x-Kordinate, y-kordinate, w=Breite,h=Höhe ; Rechteck füllen punkt ist genau die rechte obere Ecke
+    ctx.fillRect(485, 5, 10, 10)
+    ctx.fillRect(485, 190, 10, 120)
+    ctx.fillRect(465, 480, 30, 15)
+
+    //Füllfarbe ändern (Standard: schwarz)
+    //Benamte Farben: https://www.w3schools.com/colors/colors_names.asp
+    ctx.fillStyle = "red"
+    ctx.fillRect(30, 30, 20, 40)
+
+    //Aufgabe:
+    ctx.fillStyle = "ForestGreen"
+    ctx.fillRect(30, 140, 110, 25)
+    ctx.fillStyle = "LimeGreen"
+    ctx.fillRect(60, 115, 80, 25)
+    ctx.fillStyle = "GreenYellow"
+    ctx.fillRect(90, 90, 50, 25)
+
+    ctx.strokeStyle = "purple"
+    //Strichstärke verändern
+    ctx.lineWidth = 10
+    //Rechteck umwandeln
+    ctx.strokeRect(150, 20, 50, 50)
+
+    //Umrandetes Rechteck mit teiltransparenten Farbe füllen
+    //(Beachte, wo der Rand ausgefüllt wird)
+    ctx.fillStyle = "#999999CC"
+    ctx.fillRect(150, 20, 50, 50)
+    </script>
+</body>
+</html>
