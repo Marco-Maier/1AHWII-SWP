@@ -17,3 +17,11 @@ td,th{
 li{
     font-size: large; /* Schriftgröße*/
 }
+h2{
+    color: darkorange;
+    font-size: 27px;
+    border-bottom-style: dashed;
+    margin-right: 1025px;
+    border-color: coral;
+    border-bottom-width: 5px;
+}
