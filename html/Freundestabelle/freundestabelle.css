@@ -1,0 +1,26 @@
+h1{
+    font-size: xx-large;
+    border-bottom: 2px dashed white;
+    size: 100px;
+    color: white;
+}
+p{
+    color: white;
+}
+.unterschrift{
+    font-weight: 600;
+}
+table {
+    border-collapse: collapse;
+    position: relative;
+    left: 85px;
+ }
+ td,th{
+    border: 1px solid grey;
+    padding: 25px; /* Abstand in jede Seite*/
+    background-color: white;
+}
+html{
+    background-image: url(itl.cat_no-copyright-wallpapers_1365453.png);
+    background-size: cover;
+}

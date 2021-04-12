@@ -1,0 +1,28 @@
+.menu{
+    padding: 0;
+}
+.menu > li{
+    display: inline-block;
+}
+.menu > li > .menu-main-title{
+    border: 1px solid black;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.menu > li > ul {
+    display: none;
+    border: 1px solid  black;
+    padding: 0;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+}
+.menu > li:hover > ul{
+    display: block;
+}
+.menu > li > ul > li {
+    display: block;
+    padding: 5px 10px;
+}
+.menu > li > ul > li:not(:first-child) {
+    border-top: 1px solid black;
+}

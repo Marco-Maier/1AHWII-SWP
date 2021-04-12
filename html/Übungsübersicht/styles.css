@@ -1,0 +1,32 @@
+h1 { /* Alle Elemente stylen */
+    /* Unteren Rand 1px breit, strichliert und schwarz zeichnen*/
+    border-bottom: 1px dashed black; /*unterstreichen*/
+    color: steelblue
+    
+}
+.date{
+    color: red;font-weight: bold;
+}
+table {
+   border-collapse: collapse;
+}
+td,th{
+    border: 1px solid grey;
+    padding: 25px; /* Abstand in jede Seite*/
+}
+li{
+    font-size: large; /* Schriftgröße*/
+}
+h2{
+    color: darkorange;
+    font-size: 27px;
+    border-bottom-style: dashed;
+    border-color: coral;
+    border-bottom-width: 5px;
+}
+#scene{
+    position: absolute;
+    left: 900px;
+    top: 100px;
+
+}
