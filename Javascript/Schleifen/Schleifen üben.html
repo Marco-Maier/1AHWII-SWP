@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Schleifen üben</title>
+    <style>
+        #scene {
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Schleifen üben</h1>
+    <canvas id="scene" width="500" height="500">
+        <!-- id benutzt man für verlinkung und dann mit #-->
+        Dein Browser unterstützt das canvas-Element nicht.
+    </canvas>
+    <script>
+        /** @type {CanvasRenderingContext2D} */
+        let ctx = scene.getContext("2d")
+        //Mathematische Funktion zeichnen, z.B. x * x / 500
+        let x = 0
+        while(x < 500)
+        {
+            console.log(`x = ${x}`)
+            ctx.fillRect(x, 500, 1, -(x * x / 500))
+            x = x + 1
+        }
+
+        //Spirale zeichnen
+        let startx= 110
+        let starty = 100
+        let größe = 7
+        ctx.beginPath()
+        ctx.moveTo(startx, starty)
+        while ( größe < 200)
+        {
+            console.log(`startx = ${startx}`)
+            console.log(`größe = ${größe}`)
+            ctx.lineTo(startx - größe, starty)
+            startx = startx - größe
+            ctx.lineTo(startx, starty + größe)
+            starty = starty + größe
+            größe = größe + 5
+            ctx.lineTo(startx + größe, starty)
+            startx = startx + größe
+            ctx.lineTo(startx, starty - größe)
+            starty = starty - größe 
+            größe = größe + 5
+        }
+        ctx.stroke()
+        
+        //Kreis zeichnen, der aus lauter einzelnen Linien besteht
+    </script>
+</body>
+
+</html>

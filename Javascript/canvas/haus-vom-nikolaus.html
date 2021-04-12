@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Haus vom Nikolaus</title>
+    <style>
+        #scene {
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Haus vom Nikolaus</h1>
+    <canvas id="scene" width="500" height="500">
+        <!-- id benutzt man für verlinkung und dann mit #-->
+        Dein Browser unterstützt das canvas-Element nicht.
+    </canvas>
+    <script>
+        /** @type {CanvasRenderingContext2D} */
+        let ctx = scene.getContext("2d")
+        
+        ctx.strokeStyle = "blue"
+        ctx.lineWidth = 2
+        ctx.beginPath()
+        ctx.moveTo(300, 300)
+        ctx.lineTo(200, 200)
+        ctx.lineTo(200, 300)
+        ctx.lineTo(300, 300)
+        ctx.lineTo(300, 200)
+        ctx.lineTo(200, 200)
+        ctx.lineTo(250, 150)
+        ctx.lineTo(300, 200)
+        ctx.lineTo(200, 300)
+        ctx.stroke()
+    </script>
+</body>
+
+</html>

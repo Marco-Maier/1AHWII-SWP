@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Regenbogen</title>
+    <style>
+        #scene {
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Regenbogen</h1>
+    <canvas id="scene" width="500" height="500">
+        <!-- id benutzt man für verlinkung und dann mit #-->
+        Dein Browser unterstützt das canvas-Element nicht.
+    </canvas>
+    <script>
+        /** @type {CanvasRenderingContext2D} */
+        let ctx = scene.getContext("2d")
+
+        let drawSemiCircle = (x, y, radius, color) =>
+        {
+            ctx.beginPath()
+            ctx.fillStyle = color
+            ctx.arc(x, y, radius, 0, Math.PI, true)
+            ctx.fill()
+        }
+        
+        let drawRainbow = (x, y) =>
+        {
+            drawSemiCircle(x, y, 100, "red")
+            drawSemiCircle(x, y, 90, "orange")
+            drawSemiCircle(x, y, 80, "yellow")
+            drawSemiCircle(x, y, 70, "green")
+            drawSemiCircle(x, y, 60, "blue")
+            drawSemiCircle(x, y, 50, "purple")
+            drawSemiCircle(x, y, 40, "white")
+        }
+        drawRainbow(150, 150)
+        drawRainbow(250, 300)
+        drawRainbow(360, 420)
+    </script>
+</body>
+
+</html>

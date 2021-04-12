@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stufenrand Marco-Maier</title>
+    <style>
+        #scene {
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Stufenrand</h1>
+    <canvas id="scene" width="500" height="500">
+        <!-- id benutzt man für verlinkung und dann mit #-->
+        Dein Browser unterstützt das canvas-Element nicht.
+    </canvas>
+    <script>
+        /** @type {CanvasRenderingContext2D} */
+        let ctx = scene.getContext("2d")
+
+        ctx.strokeStyle = "Teal"
+        ctx.lineWidth = 4
+        ctx.beginPath()
+        ctx.moveTo(100, 400)
+        ctx.lineTo(400, 400)
+        ctx.lineTo(400, 100)
+        ctx.lineTo(300, 100)
+        ctx.lineTo(300, 200)
+        ctx.lineTo(200, 200)
+        ctx.lineTo(200, 300)
+        ctx.lineTo(100, 300)
+        ctx.lineTo(100, 400)
+        ctx.stroke()
+    </script>
+</body>
+
+</html>

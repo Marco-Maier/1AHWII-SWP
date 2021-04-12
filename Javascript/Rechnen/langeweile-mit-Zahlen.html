@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Langeweile mit Zahlen</title>
+    <style>
+        #scene {
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Langeweile mit Zahlen</h1>
+    <canvas id="scene" width="500" height="500">
+        <!-- id benutzt man für verlinkung und dann mit #-->
+        Dein Browser unterstützt das canvas-Element nicht.
+    </canvas>
+    <script>
+        /** @type {CanvasRenderingContext2D} */
+        let ctx = scene.getContext("2d")
+
+        // Eine Variable ist wie eine box, in der man etwas aufbewahren kann.
+        // in einer Variable wird genau ein wert aufbewahrt (=gespeichert)
+        // z.B. eine Zahl, ein Text, ein Bild oder wie oben einen 2D-Zeichenkontext ein Canvas.
+        // Variablen werden im Ram gespeichert, sind also in der Größe insgesamt begrenzt,
+        // dafür ist der Zugriff darauf sber sehr schnell.
+        // Der Inhalt einer Variable kann gelesen (read) oder geschrieben (write) werden.
+        // Variablen werden bei der ersten Verwendung mit den Schlüsselwort "let" definiert,
+        // anschließend kann der Inhalt beliebig oft gelesen und/oder geschrieben werden.
+
+        // Variable mit dem Namen "summand1" erzeugen und die Zahl 5 darin speichern
+        let summand1 = 5
+        // Variable lesen und in die Entwicklerkonsole zu schreiben
+        console.log(summand1)
+        let summand2 = 3
+        let sum = summand1 + summand2
+        // Mit "string interpolation" kann aus mehreren Variablen ein Text erzeugt werden
+        console.log(`${summand1} + ${summand2} = ${sum}`)
+        // Augabe das gleiche mit subrastkotion, multiplikation und divison
+
+        let sub1 = 7
+        let sub2 = 5
+        let div = sub1 - sub2
+        console.log(`${sub1} - ${sub2} = ${div}`)
+
+        let mu1 = 4
+        let mu2 = 10
+        let emu = mu1 * mu2
+        console.log(`${mu1} * ${mu2} = ${emu}`)
+
+        //Rechteck
+        let a = 40
+        let b = 3 * a
+        let line = `a = ${a}, b = ${b}`
+        console.log(line)
+        ctx.fillRect(50, 75, a, b) // a = länge horizontal und b = breite vertikal
+
+        let dividend = 17
+        let divisor = 5
+        let produkt = 17 / 5
+        console.log(`${dividend} / ${divisor} = ${produkt}`)
+
+        //Der Modulo-Operator ("%") errechnet den Rest der Division zweier Zahlen
+        let remainder = dividend % divisor
+        console.log(`${dividend} % ${divisor} = ${remainder}`) //Reminder = Rest
+
+        //Neuer Wert in bestehende Variable schreiben
+        dividend = 20
+        console.log(`${dividend} % ${divisor} = ${remainder} (falsches Ergebniss, weil nicht neu berechnet)`)
+        // Achtung: 'quotient' und 'remainder' werden nicht automatisch neu berechnet
+        remainder = dividend % divisor
+        console.log(`${dividend} % ${divisor} = ${remainder}`) //remainder = rest
+
+        //Vorangregeln ("Operator precedence") funktionieren wie gewohnt
+        console.log(`17 + 4 * 3 = ${17 + 4 * 3}`)
+        console.log(`(17 * 4) * 3 = ${(17 + 4) * 3}`)
+        console.log(`16 - (8 + 3) = ${16 - (8 + 3)}`)
+
+        // Mathematische Funktionen in "Math"-Objekt
+        console.log(`sin(0°) = ${Math.sin(0)}`)
+        console.log(`sin(90°) = ${Math.sin(Math.PI / 2)}`)
+        console.log(`cos(90°) = ${Math.cos(Math.PI / 2)}`)
+        console.log(`tan(45°) = ${Math.tan(Math.PI / 4)}`)
+        console.log(`sqrt(16) = ${Math.sqrt(16)}`) // Wurzel
+        console.log(`random() = ${Math.random()}`)
+        console.log(`floor(${produkt}) = ${Math.floor(produkt)}`) // abrunden
+        console.log(`ceil(${produkt}) = ${Math.ceil(produkt)}`) //Aufrunden
+        console.log(`round(${produkt}) = ${Math.round(produkt)}`) //Abrunden
+        console.log(`hypot(${emu}) = ${Math.hypot(mu1, mu2)}`) // Hypotenuse
+    </script>
+</body>
+
+</html>

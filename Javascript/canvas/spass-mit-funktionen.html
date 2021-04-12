@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Spaß mit Funktionen</title>
+    <style>
+        #scene {
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Spaß mit Funktionen</h1>
+    <canvas id="scene" width="500" height="500">
+        <!-- id benutzt man für verlinkung und dann mit #-->
+        Dein Browser unterstützt das canvas-Element nicht.
+    </canvas>
+    <script>
+        /** @type {CanvasRenderingContext2D} */
+        let ctx = scene.getContext("2d")
+
+        //Rechtecke zeichen gehen mit einer einzige Anweisung
+        // ctx.fillRect(150, 50, 150, 150)        Rechteck Füllen
+
+        //Kreis zeichen ist komplizierter
+        // ctx.beginPath()
+        // ctx.arc(50, 50, 20, 0, 2 * Math.PI)
+        // ctx.fill()
+
+        // ... aber wir können es usn selber leichter machen,
+        // indem wir uns eine Funktion definiert
+
+        // Funktionsdefinition - Name ist beliebig, soll aber sprechend sein.
+        // "x", "y" und "radius" sind Funktionsparameter und werden bei jedem Aufruf der Funktion vom Aufrufer übergeben
+        // (anstonsten würde ja immer der gleiche Kreis gezeichnet werden).
+        // Funktionsparameter dürfen nur innerhalb der Funktion verwendet werden.
+        // Befehle innerhalb "{" und "}" werden bei jedem Funktionsaufruf ausgeführt.
+        let fillCircle = (x, y, radius) => {
+            ctx.beginPath()
+            ctx.arc(x, y, radius, 0, 2 * Math.PI)
+            ctx.fill()
+        }
+        // Funktionsaufruf - erst beim Aufruf werden die Befehle in der Funktion ausgeführt
+        // Funktion gehört nicht zum ctx-Objekt, deshalb wird sie ohne "ctx." aufgerufen
+        fillCircle(50, 50, 20)
+        fillCircle(75, 100, 60)
+        fillCircle(130, 150, 5)
+
+        //selbständige Aufgabe:
+        let fillColoredCircle = (x, y, radius, color) => {
+            ctx.fillStyle = color
+            fillCircle(x, y, radius)
+        }
+
+        fillColoredCircle(190, 60, 50, "teal")
+        fillColoredCircle(190, 60, 20, "brown")
+        // Übung für jetzt/Zuhause:
+        //Funktion, die Ampel zeichnet (fillColoredCircle verwenden)
+        // Funktion, die gefülltes Rechteck mit Rahmen zeichen (Position, Größe, Füllfarbe, Rahmenfarbe als Parameter übergeben)
+        // Funktion, die Halbkreis zeichnet ( Startwinkel als Parameter übergeben)
+        // Funktion, die fillStyle, strokeStyle, lineWidth usw. zurücksetzen
+
+        //Alles Reseten
+        let resetAll = () => {
+            ctx.resetTransform()
+            ctx.fillStyle = "Black"
+            ctx.strokeStyle = "Black"
+            ctx.lineWidth = 1
+        }
+        ctx.lineWidth = 9
+        ctx.strokeRect(30, 400, 30, 30)
+        resetAll()
+        ctx.strokeRect(30, 450, 30, 30)
+
+        // Ampel
+        let Ampel = (x, y, Größe) => {
+            ctx.fillStyle = "black"
+            ctx.fillRect(x, y, 68 / Größe, 150 / Größe)
+            ctx.beginPath()
+            ctx.fillStyle = "red"
+            ctx.arc(x + 34 / Größe, y + 30 / Größe, 20 / Größe, 0, 2 * Math.PI)
+            ctx.fill()
+            ctx.beginPath()
+            ctx.fillStyle = "yellow"
+            ctx.arc(x + 34 / Größe, y + 75 / Größe, 20 / Größe, 0, 2 * Math.PI)
+            ctx.fill()
+            ctx.beginPath()
+            ctx.fillStyle = "green"
+            ctx.arc(x + 34 / Größe, y + 120 / Größe, 20 / Größe, 0, 2 * Math.PI)
+            ctx.fill()
+        }
+        //je größer die Zahl desto kleiner die Ampel
+        Ampel(20, 230, 1)
+        Ampel(250, 30, 1.2)
+        
+        //Rechteck
+        let Rechteckvoll = (x, y, größehorizontal, größevertikal, Strichstärke, fillcolor, strokecolor) => {
+            ctx.fillStyle = fillcolor
+            ctx.fillRect(x, y, größehorizontal, größevertikal)
+            ctx.strokeStyle = strokecolor
+            ctx.lineWidth = Strichstärke
+            ctx.strokeRect(x, y, größehorizontal, größevertikal)
+        }
+        Rechteckvoll(100, 300, 100, 50, 5, "purple", "green")
+        Rechteckvoll(100, 250, 70, 20, 1, "red", "blue")
+
+        // Halbkreis
+        let halfCircle = (x, y, radius, color, startwinkel) => {
+            ctx.beginPath()
+            ctx.fillStyle = color
+            ctx.arc(x, y, radius, startwinkel, Math.PI + startwinkel)
+            ctx.fill()
+        }
+        halfCircle(200, 250, 20, "teal", Math.PI / 2)
+        halfCircle(210, 250, 20, "teal", Math.PI + Math.PI / 2)
+
+        //Ampelprofi
+        let Trafficlight = (x, y, Größe) => {
+            ctx.fillStyle = "black"
+            ctx.beginPath()
+            //immer mit dem startwinkel addieren!!!
+            //Math.PI ist ein halber Kreis      Startwinkel     Endwinkel
+            ctx.arc(x + 34 / Größe, y, 34 / Größe, Math.PI, Math.PI + Math.PI)
+            ctx.fill()
+            ctx.beginPath()
+            ctx.arc(x + 34 / Größe, y + 135 / Größe, 34 / Größe, 0, Math.PI)
+            ctx.fill()
+            ctx.fillStyle = "black"
+            ctx.fillRect(x, y, 68 / Größe, 135 / Größe)
+            //Oben
+            ctx.beginPath()
+            ctx.fillStyle = "grey"
+            ctx.arc(x + 34 / Größe, y - 2 / Größe, 27 / Größe, 0, Math.PI * 2)
+            ctx.fill()
+            ctx.beginPath()
+            ctx.fillStyle = "red"
+            ctx.arc(x + 34 / Größe, y + 5 / Größe, 27 / Größe, 0, 2 * Math.PI)
+            ctx.fill()
+            //Mitte
+            ctx.beginPath()
+            ctx.fillStyle = "grey"
+            ctx.arc(x + 34 / Größe, y + 60 / Größe, 27 / Größe, 0, Math.PI * 2)
+            ctx.fill()
+            ctx.beginPath()
+            ctx.fillStyle = "yellow"
+            ctx.arc(x + 34 / Größe, y + 67.5 / Größe, 27 / Größe, 0, 2 * Math.PI)
+            ctx.fill()
+            //Unten
+            ctx.beginPath()
+            ctx.fillStyle = "grey"
+            ctx.arc(x + 34 / Größe, y + 123 / Größe, 27 / Größe, 0, Math.PI * 2)
+            ctx.fill()
+            ctx.beginPath()
+            ctx.fillStyle = "green"
+            ctx.arc(x + 34 / Größe, y + 130 / Größe, 27 / Größe, 0, 2 * Math.PI)
+            ctx.fill()
+        }
+        Trafficlight(300, 200, 1)
+        Trafficlight(380, 200, 1.25)
+
+        //Viertelkreis
+        let quadrant = (xCenter, yCenter, radius, startwinkel, lineWidth, color) => {
+            ctx.strokeStyle = color
+            ctx.lineWidth = lineWidth
+            ctx.beginPath()
+            ctx.arc(xCenter - radius, yCenter - radius, radius, startwinkel, Math.PI / 2 + startwinkel)
+            ctx.stroke()
+        }
+        //WLAN
+        quadrant(200, 450, 1, Math.PI, 2, "blue")
+        quadrant(200, 450, 4, Math.PI, 2, "blue")
+        quadrant(200, 450, 7, Math.PI, 2, "blue")
+        quadrant(200, 450, 10, Math.PI, 2, "blue")
+        quadrant(200, 450, 13, Math.PI, 2, "blue")
+        quadrant(200, 450, 17, Math.PI, 2, "blue")
+        quadrant(200, 450, 22, Math.PI, 2, "blue")
+        quadrant(200, 450, 27, Math.PI, 2, "blue")
+        quadrant(200, 450, 32, Math.PI, 2, "blue")
+        quadrant(200, 450, 36, Math.PI, 2, "blue")
+        quadrant(200, 450, 40, Math.PI, 2, "blue")
+        quadrant(350, 500, 60, Math.PI, 2, "blue")
+        //Anfang des WLAN
+        ctx.fillRect(200, 450, 2, 2)
+
+
+        //Besen
+        let Besen = (x, y, Größe, lineWidth, stielFarbe, borstenFarbe) => {
+            ctx.strokeStyle = stielFarbe
+            ctx.beginPath()
+            ctx.lineWidth = lineWidth
+            ctx.moveTo(x, y)
+            ctx.lineTo(x, y + 100 /Größe)
+            ctx.stroke()
+            ctx.strokeStyle = borstenFarbe
+            ctx.beginPath()
+            ctx.moveTo(x, y + 100 / Größe)
+            ctx.lineTo(x + 40 / Größe, y + 120 / Größe)
+            ctx.moveTo(x, y + 100 / Größe)
+            ctx.lineTo(x + 20 / Größe , y + 125 / Größe)
+            ctx.moveTo(x, y + 100 / Größe)
+            ctx.lineTo(x + 5 / Größe, y + 125 / Größe)
+            ctx.moveTo(x, y + 100 / Größe)
+            ctx.lineTo(x - 5 / Größe, y + 125 / Größe)
+            ctx.moveTo(x, y + 100 / Größe)
+            ctx.lineTo(x - 20 / Größe, y + 125 / Größe)
+            ctx.moveTo(x, y + 100 / Größe)
+            ctx.lineTo(x - 40 / Größe, y + 120 / Größe)
+            ctx.stroke()
+        }
+        Besen(350, 20, 1.5, 3, "brown", "yellow")
+        Besen(440, 20, 1, 4, "chocolate", "grey")
+
+        //Quadrat mit Mittelpunkt
+        let QuadratmitMittelpunkt = (xCenter, yCenter, sideLength, lineWidth, strokecolor) => {
+            ctx.strokeStyle = strokecolor
+            ctx.lineWidth = lineWidth
+            ctx.strokeRect(xCenter - sideLength / 2, yCenter - sideLength / 2, sideLength, sideLength)
+        }
+        ctx.beginPath()
+        ctx.arc(400, 400, 3, 0, Math.PI * 2)
+        ctx.fill()
+        QuadratmitMittelpunkt(400, 400, 30, 4, "green")
+        QuadratmitMittelpunkt(400, 400, 40, 2, "brown")
+        QuadratmitMittelpunkt(400, 400, 60, 7, "red")
+    </script>
+</body>
+
+</html>

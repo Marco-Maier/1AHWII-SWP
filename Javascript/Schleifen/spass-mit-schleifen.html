@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Spaß mit Schleifen</title>
+    <style>
+        #scene {
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Spaß mit Schleifen</h1>
+    <canvas id="scene" width="500" height="500">
+        <!-- id benutzt man für verlinkung und dann mit #-->
+        Dein Browser unterstützt das canvas-Element nicht.
+    </canvas>
+    <script>
+        /** @type {CanvasRenderingContext2D} */
+        let ctx = scene.getContext("2d")
+
+        // Variable mit dem Namen "offset" erzeugen (=deklarieren) und
+        // Die Zahl 5 darin merken
+        let offset = 5
+
+        // Anweisungen in der Schleife werden so lange wiederholt, so lange
+        // die Aussage "wahr" ist
+        // Operatoren zum Vergleichen von Zahlen: <, <=, >, >=, ==
+        while (offset < 100) {
+            console.log(`Offset = ${offset}`)
+            ctx.strokeRect(offset, offset, 50, 50)
+
+            // WICHTIG: Variable "offset" muss verändert werden,
+            // damit diese Bedingung in der Schleife irgendwann nicht mehr
+            // "wahr" ist und die Schleife beendet werden kann
+            //Ansonsten erhält man eine sich endlos wiederholende Schleife.
+            offset = offset + 5
+        }
+        console.log(`Offset after loop = ${offset}`)
+        ctx.fillRect(offset, offset, 50, 50)
+
+        // Offset um 10 erhöhen, Offset um 1 erhöhen, Offset nicht erhöhen
+        // Größe einbauen ("size")
+        // nur Breite/Höhe verändern
+
+        // Viele Schleifen funktionieren folgendermaßen:
+        // * Vor der Schleife wird eine Variable "a"
+        // auf einen bestimmten anfangswert gesetzt.
+        // * Vor jedem Durchlauf der Schleife wird mithilfe der Variable "a"
+        // geprüft, ob die Anweisung in der Schleife ausgeführt werden sollen.
+        // * Nach jedem Schleifendurchlauf wird die Variable "a" verändert,
+        // sodass obige Bedingung eventuell nicht merh erfüllt wird
+        // und die Schleife dadurch beendet wird.
+        // Für solche Schleifen gibt es eine alternative,
+        // etwas kürzere Schreibweise - die for - Schleife:
+        for (let offset = 5; offset < 100; offset = offset + 5) {
+            ctx.strokeRect(offset + 150, offset, 50, 50)
+        }
+
+        // Für "offset = offset + 5" gibt es noch eine kürzere Schreibweise:
+        // "offset += 5" (gilt auch für die Operatoren "-", "*", "/" und "%")
+        //Für das Erhöhen einer Variable um 1 gibt es noch eine kürzere
+        // Schreibweise:
+        // "offset++" (gilt auch für "-")    
+
+        //Übungen:
+
+        // Balkendiagramm von links nach rechts mit
+        // 1) gleich groß,
+        // 2) immer kleiner werdenden
+        // 3) immer kleiner werdend
+        // Balken zeichnen
+        console.log(`scene width = ${scene.width}, scene heigth = ${scene.height}`)
+        let h = 200
+        let offsetx = 10
+        let offsety = 0
+        while(offsetx < 480)
+        {
+            ctx.fillRect(offsetx , offsety + 350, 20, h)
+            console.log(`offsetx (Balkendiagramm) = ${offsetx}`)
+
+            offsety = offsety + 10
+            offsetx = offsetx + 40
+            h = h - 10
+            
+        }
+        
+
+        // Konzentrische Kreise zeichnen (Kreise mit gleichem Mittelpunkt)
+        // 1) konstante Veränderung des Radius
+        // 2) Radiusveränderung wird immer größer/kleiner
+        let offsetr = 10
+        while(offsetr < 150)
+        {
+            ctx.beginPath()
+            ctx.arc(350, 280, offsetr, 0, Math.PI * 2)
+            ctx.stroke()
+            offsetr = offsetr + 4
+            console.log(`offsetr(Kreis) = ${offsetr}`)
+        }
+
+        // Strichlierten Kreis zeichnen
+        let start = Math.PI 
+        let end = Math.PI / 8
+        while(start < Math.PI * 3)
+        {
+            ctx.beginPath()
+            ctx.arc(100, 250, 60, start, end + start)
+            ctx.stroke()
+            start = start + Math.PI / 5
+        }
+        //Mathematische Funktion zeichnen, z.B. x * x / 500
+        </script>
+</body>
+
+</html>
