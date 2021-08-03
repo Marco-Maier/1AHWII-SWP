@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ein eigenes Spiel</title>
+    <style>
+        #scene {
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Ein eigenes Spiel</h1>
+    <canvas id="scene" width="675" height="500">
+        <!-- id benutzt man für verlinkung und dann mit #-->
+        Dein Browser unterstützt das canvas-Element nicht.
+    </canvas>
+    <script>
+        /** @type {CanvasRenderingContext2D} */
+        let ctx = scene.getContext("2d")
+
+
+        let player = new Image()
+        player.src = "https://pluspng.com/img-png/burn-png-best-free-flame-png-icon-2480.png"
+        let playerWidth = 2480 / 20
+        let playerHeight = 1694 / 20
+
+
+        let water = new Image()
+        water.src = "https://upload.wikimedia.org/wikipedia/commons/9/96/WaterdropOS_Logo.png"
+        let waterWidth = 512 / 10
+        let waterHeight = 512 / 10
+
+        let ice = new Image()
+        ice.src = "https://www.010-deco-shop.de/WebRoot/Store/Shops/15342646/5D9D/E0CE/EC70/2BB9/0C6F/0A0C/6D11/2825/ICS3099.png"
+        let iceWidth = 720 / 14
+        let iceHeight = 1080 / 14
+
+        let trophae = new Image()
+        trophae.src = "http://res.publicdomainfiles.com/pdf_view/70/13929502217552.png"
+        let trophaeWidth = 958 / 44
+        let trophaeHeight = 1437 / 44
+
+        let heart = new Image()
+        heart.src = "https://www.zapeyron.com/wp-content/uploads/2021/01/Red-Heart-Icon-Png_00000.png"
+        let heartWidth = 1920 / 40
+        let heartHeight = 1080 / 40
+
+        let dead = new Image()
+        dead.src = "http://cdn.shopify.com/s/files/1/1061/1924/products/Pirate_Skull_Emoji_Icon_b77a0005-472e-41e4-ad15-fd871038f91e_grande.png?v=1513249396"
+        let deadWidth = 600 / 3
+        let deadHeight = 593 / 3
+
+        // let backgroun = new Image()
+        // background.src = "https://www.sirene112.de/wp-content/uploads/2013/02/Firefighters.jpg"
+        // let backgroundWidth = scene.width
+        // let backgroundHeight = scene.height
+
+        let level = 1
+        let Steigung = 2.5
+        let Steigungwater = 2
+        let iceSteigung = 2
+        let second = 7
+        let countdown = 4
+        let score = 0
+        let lives = 20
+
+        let xPosition = scene.width / 2 - playerWidth / 2
+        let yPosition = scene.height - playerHeight
+        let xPosition2 = scene.width / 2
+        let yPosition2 = 0
+        let xPosition3 = 20
+        let yPosition3 = 0
+        let xPosition4 = 30
+        let yPosition4 = 100
+
+
+        let keyLeftIsPressed = false
+        let keyRightIsPresses = false
+        let SpaceBar = false
+        // let collision = (x1, y1, x2, y2, width1, height1, width2, height2) =>
+        // {
+        //     if (y2 + height2 >= y1 && y2 < scene.height && x2 <= x1 + width1 && x2 + width2 >= x1)
+        //     {
+        //         x2 = Math.random() * (scene.width - width2)
+        //         y2 = Rücksetzpunkt
+        //         score += 1
+        //     }
+        // }
+
+
+
+
+
+
+
+
+
+        let onKeyDown = (event) => {
+            if (event.key == "ArrowRight") {
+                keyRightIsPresses = true
+            }
+            if (event.key == "ArrowLeft") {
+                keyLeftIsPressed = true
+            }
+            if (event.key == "d") {
+                keyRightIsPresses = true
+            }
+            if (event.key == "a") {
+                keyLeftIsPressed = true
+            }
+
+            if (event.key == " ") {
+                if (SpaceBar == false) {
+                    SpaceBar = true
+                }
+                else {
+                    SpaceBar = false
+                }
+            }
+
+
+
+            // console.log("Key down", event.key) 
+        }
+        window.addEventListener("keydown", onKeyDown)
+
+        let onKeyUp = (event) => {
+            if (event.key == "ArrowRight") {
+                keyRightIsPresses = false
+            }
+            if (event.key == "ArrowLeft") {
+                keyLeftIsPressed = false
+            }
+            if (event.key == "d") {
+                keyRightIsPresses = false
+            }
+            if (event.key == "a") {
+                keyLeftIsPressed = false
+            }
+
+            // console.log("Key up", event.key)
+        }
+
+        window.addEventListener("keyup", onKeyUp)
+
+
+
+        // Countdown
+        let count = () => {
+
+            if (countdown >= 0 && countdown <= 3) {
+                ctx.clearRect(0, 0, scene.width, scene.height)
+                ctx.font = "bold 70px Comic Sans MS"
+                ctx.fillText(countdown, scene.width / 2 - 50, scene.height / 2)
+                // ctx.strokeRect(scene.width / 2, scene.height / 2, 10, 10)
+            }
+            else if (countdown == 4) {
+                ctx.font = "bold 60px Comic Sans MS"
+                ctx.fillText("Bereit?", scene.width / 2 - 120, scene.height / 2)
+            }
+            countdown -= 1
+        }
+
+
+
+        let draw = () => {
+
+            if (score >= 10)
+            {
+                Steigungwater = 2.5
+                Steigung = 3
+                level = 2
+            }
+
+            if(score >= 20)
+            {
+                Steigungwater = 3
+                Steigung = 3.5
+                level = 3
+            }
+            if (score >= 30)
+            {
+                Steigungwater = 3.5
+                Steigung = 4
+                level = 4
+            }
+            if (score >= 40)
+            {
+                Steigungwater = 4
+                Steigung = 4.5
+                level = 5
+            }
+            if (score >= 50)
+            {
+                Steigungwater = 4.5
+                Steigung = 5
+                level = 6
+            }
+
+
+
+            if (countdown < 0 && lives > 0) {
+
+                // Zurücksetzen (Collidieren)
+                if (yPosition2 + waterHeight >= yPosition && yPosition2 < scene.height && xPosition2 <= xPosition + playerWidth && xPosition2 + waterWidth >= xPosition) {
+                    xPosition2 = Math.random() * (scene.width - waterWidth)
+                    yPosition2 = yPosition2 - yPosition2
+                    score += 1
+                }
+                if (yPosition2 + waterHeight >= scene.height) {
+                    xPosition2 = Math.random() * (scene.width - waterWidth)
+                    yPosition2 = yPosition2 - yPosition2
+                    lives -= 1
+                }
+                if (yPosition4 + iceHeight >= yPosition && yPosition4 < scene.height && xPosition4 <= xPosition + playerWidth && xPosition4 + iceWidth >= xPosition) {
+                    xPosition4 = Math.random() * (scene.width - waterWidth)
+                    yPosition4 = yPosition2 - yPosition2
+                    lives -= 1
+                }
+                if (yPosition4 + iceHeight >= scene.height) {
+                    xPosition4 = Math.random() * (scene.width - waterWidth)
+                    yPosition4 = yPosition4 - yPosition4
+                }
+
+
+
+
+
+
+                //Steuerung
+                if (keyLeftIsPressed == true) {
+                    xPosition -= Steigung
+                }
+                if (keyRightIsPresses == true) {
+                    xPosition += Steigung
+                }
+
+                // damit es nicht aus dem canvas geht
+                if (xPosition + playerWidth >= scene.width) {
+                    xPosition -= Steigung
+                }
+                if (xPosition <= 0) {
+                    xPosition += Steigung
+                }
+
+                // if (yPosition + playerHeight >= scene.height) {
+                //     yPosition -= Steigung
+                // }
+                // if (yPosition <= 0) {
+                //     yPosition += Steigung
+                // }
+                // console.log(`${SpaceBar}`)
+                // console.log(`${keyUpIsPressed} ${keyDownIsPressed} ${keyLeftIsPressed} ${keyRightIsPresses}`)
+                // console.log(`xPosition = ${xPosition}`)
+
+
+
+
+                // ctx.clearRect(0, 0, scene.width, scene.height)
+                // ctx.fillRect(xPosition, yPosition, 5, 5)
+                // ctx.strokeRect(xPosition, yPosition, 40, 40)
+                // ctx.strokeRect(xPosition2, yPosition2, waterWidth, waterHeight)
+
+                //Screen 
+                ctx.clearRect(0, 0, scene.width, scene.height)
+
+                // ctx.drawImage(background, 0, 0, backgroundWidth, backgroundHeight)
+                ctx.drawImage(water, xPosition2, yPosition2, waterWidth, waterHeight)
+                ctx.drawImage(ice, xPosition4, yPosition4, iceWidth, iceHeight)
+                ctx.drawImage(player, xPosition, yPosition, playerWidth, playerHeight)
+                ctx.drawImage(trophae, 143, 0, trophaeWidth, trophaeHeight)
+                ctx.drawImage(heart, 130, trophaeHeight, heartWidth, heartHeight)
+                ctx.font = "bold 25px Arial"
+                ctx.fillText("Score:", 10, 25)
+                ctx.fillText(score, 90, 25)
+                ctx.font = "bold 25px Arial"
+                ctx.fillText("Lives:", 10, 55)
+                ctx.fillText(lives, 90, 55)
+                ctx.fillText("Level:", 10, 85)
+                ctx.fillText(level, 90, 85)
+                yPosition2 += Steigungwater
+                yPosition4 += iceSteigung
+
+                // strokeColorRect(xPosition, yPosition, playerWidth, playerHeight, "blue")
+                // console.log(`${yPosition2}`)
+                // console.log(`${event.key}`)
+                // console.log(countdown)
+                // if (Spacebar == true && score >= 10) {
+                //     score -= 10
+                //     lives += 1
+                // }
+            }
+            //Game Over Screen
+            if (lives <= 0) {
+                ctx.clearRect(0, 0, scene.width, scene.height)
+                ctx.font = "bold 60px Comic Sans MS"
+                ctx.fillText("Game Over!", scene.width / 2 - 170, scene.height / 2)
+                ctx.font = "bold 40px Comic Sans MS"
+                ctx.fillText("Score:", scene.width / 2 - 90, scene.height / 2 - 60)
+                ctx.fillText(score, scene.width / 2 + 40, scene.height / 2 - 60)
+                ctx.drawImage(dead, scene.width / 2 - deadWidth / 2 - 10, scene.height / 2 + 20, deadWidth, deadHeight)
+            }
+        }
+
+
+        //Schwieriger
+        // let harder = () => {
+        //     if (SpaceBar == true) {
+
+        //         draw()
+
+        //         if (lives > 0 && countdown < 0) {
+        //             ctx.drawImage(water, xPosition3, yPosition3, waterWidth, waterHeight)
+        //             if (yPosition3 + waterHeight >= yPosition && yPosition3 < scene.height && xPosition3 <= xPosition + playerWidth && xPosition3 + waterWidth >= xPosition) {
+        //                 xPosition3 = Math.random() * (scene.width - waterWidth)
+        //                 yPosition3 = yPosition3 - yPosition3
+        //                 score += 1
+
+
+
+
+        //             }
+
+        //             if (yPosition3 + waterHeight >= scene.height) {
+
+        //                 xPosition3 = Math.random() * (scene.width - waterWidth)
+        //                 yPosition3 = yPosition3 - yPosition3
+        //                 lives -= 1
+        //             }
+        //             yPosition3 += Steigungwater
+        //         }
+
+
+        //     }
+        //     else if (SpaceBar == false) {
+
+        //         draw()
+        //         if (yPosition3 + waterHeight >= scene.height) {
+        //             xPosition3 = Math.random() * (scene.width - waterWidth)
+        //             yPosition3 = yPosition3 - yPosition3
+        //         }
+        //         yPosition3 += Steigungwater
+        //     }
+        // }
+
+
+        setInterval(count, 1000)
+
+        setInterval(draw, second)
+
+
+
+    </script>
+    <p>Wenn man die Leertaste drückt kann man den schwierigeren Modus spielen</p>
+    <P><b>Der Eiswürfel darf nicht eingesammelt werden!!</b></P>
+
+</body>
+
+</html>
