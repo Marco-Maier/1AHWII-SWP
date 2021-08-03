@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>Ein erstes Spiel</title>
+</head>
+
+<body>
+    <h1>Ein erstes Spiel</h1>
+    <canvas id="scene" width="500" height="250" style="border: 1px dotted black"></canvas>
+    <script>
+        /** @type {CanvasRenderingContext2D} */
+        let ctx = scene.getContext("2d")
+
+        let player = new Image()
+        player.src = "http://iconoun.com/demo/images/scale_grumpy_cat.png"
+        let playerWidth = 900 / 15
+        let playerHeight = 704 / 15
+        let playerXPosition = scene.width / 2 - playerWidth / 2
+        let playerYPosition = scene.height - playerHeight
+
+        let foodList = []
+        let i = 1
+        while (i <= 20000) {
+            let food = new Image()
+            food.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Lutjanus_campechanus.png/220px-Lutjanus_campechanus.png"
+            let foodWidth = 220 / 10
+            let foodHeight = 133 / 10
+            let foodXPosition = Math.random() * (scene.width - foodWidth)
+            let foodYPosition = Math.random() * ( - scene.height)
+
+            foodList.push(food, foodXPosition, foodYPosition, foodWidth, foodHeight)
+
+            i++ // i = i + 1
+        }
+        console.log(foodList)
+
+        // let food = new Image()
+        // food.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Lutjanus_campechanus.png/220px-Lutjanus_campechanus.png"
+        // let foodWidth = 220 / 10
+        // let foodHeight = 133 / 10
+        // let foodXPosition = Math.random() * (scene.width - foodWidth)
+        // let foodYPosition = 0
+
+        let keyLeftIsPressed = false
+        let keyRightIsPressed = false
+
+        let score = 0
+        let lives = 3
+
+        let hasStarted = false
+        let hasEnded = false
+
+        let draw = () => {
+            ctx.clearRect(0, 0, scene.width, scene.height)
+
+            ctx.font = "20px Segoe UI Light"
+            ctx.fillText(`Punkte: ${score}`, 10, 20)
+            ctx.fillText(`Leben: ${lives}`, 10, 40)
+
+            let i = 0
+            while (i < foodList.length) {
+                ctx.drawImage(foodList[i], foodList[i + 1], foodList[i + 2], foodList[i + 3], foodList[i + 4])
+                i += 5 // i = i + 5
+            }
+
+
+            ctx.drawImage(player, playerXPosition, playerYPosition, playerWidth, playerHeight)
+
+            if (!hasStarted) {
+                ctx.font = "20px Segoe UI Light"
+                let text = "Drücke <Leertaste> zum Starten"
+                let measurement = ctx.measureText(text)
+                ctx.fillText(text, scene.width / 2 - measurement.width / 2, scene.height / 3)
+            }
+            else if (hasEnded) {
+                ctx.font = "50px Segoe UI Light"
+                let text = "Game over"
+                let measurement = ctx.measureText(text)
+                ctx.fillText(text, scene.width / 2 - measurement.width / 2, scene.height / 3)
+                // console.log(score)
+            }
+        }
+
+        let move = () => {
+            if (keyLeftIsPressed) {
+                playerXPosition -= 5
+            }
+            if (keyRightIsPressed) {
+                playerXPosition += 5
+            }
+
+            // let foodYPosition
+            let i = 0
+            while (i <= foodList.length - 2) {
+                foodYPosition = foodList[i + 2]
+                foodYPosition += 5
+                foodXPosition = foodList[i + 1]
+                foodWidth = foodList[i + 3]
+                foodHeight = foodList[i + 4]
+                
+                let foodTop = foodYPosition
+                let foodBottom = foodYPosition + foodHeight
+                let foodLeft = foodXPosition
+                let foodRight = foodXPosition + foodWidth
+
+                let playerTop = playerYPosition
+                let playerBottom = playerYPosition + playerHeight
+                let playerLeft = playerXPosition
+                let playerRight = playerXPosition + playerWidth
+
+
+
+                if (playerXPosition + playerWidth / 2 < 0) {
+                    playerXPosition += scene.width
+                }
+                else if (playerXPosition + playerWidth / 2 > scene.width) {
+                    playerXPosition -= scene.width
+                }
+                if (foodLeft < playerRight && foodRight > playerLeft && foodTop < playerBottom && foodBottom > playerTop) {
+                    score++
+                    foodXPosition = Math.random() * (scene.width - foodWidth)
+                    foodYPosition = 0
+                }
+
+                if (foodYPosition + foodHeight > scene.height) {
+                    lives--
+                    if (lives <= 0) {
+                        hasEnded = true
+                    }
+                    else {
+                        foodXPosition = Math.random() * (scene.width - foodWidth)
+                        foodYPosition = 0
+                    }
+
+
+
+                }
+
+
+
+                foodList[i + 1] = foodXPosition
+                foodList[i + 2] = foodYPosition
+                i += 5
+            }
+        }
+
+        let step = () => {
+            if (hasStarted && !hasEnded) {
+                move()
+            }
+            draw()
+        }
+
+        setInterval(step, 40)
+
+        let onKeyDown = event => {
+            if (event.key == " " && !hasEnded) {
+                hasStarted = true
+            }
+            if (event.key == "ArrowLeft") {
+                keyLeftIsPressed = true
+            }
+            else if (event.key == "ArrowRight") {
+                keyRightIsPressed = true
+            }
+        }
+        window.addEventListener("keydown", onKeyDown)
+
+        let onKeyUp = event => {
+            if (event.key == "ArrowLeft") {
+                keyLeftIsPressed = false
+            }
+            else if (event.key == "ArrowRight") {
+                keyRightIsPressed = false
+            }
+        }
+        window.addEventListener("keyup", onKeyUp)
+    </script>
+</body>
+
+</html>
