@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <style>
+        #scene{
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Canvas</h1>
+    <canvas id="scene" width="500" height="500">
+        <!-- id benutzt man für verlinkung und dann mit #-->
+        Dein Browser unterstützt das canvas-Element nicht.
+    </canvas>
+    <script>
+        /** @type {CanvasRenderingContext2D} */
+        let ctx = scene.getContext("2d")
+        
+        let fillCircle = (x, y, radius, anf, end, color) =>
+        {
+            ctx.beginPath()
+            ctx.fillStyle = color
+            ctx.arc(x, y, radius, anf, end)
+            ctx.fill()
+        }
+
+        let Marco = (x, y, color) =>
+        {
+            ctx.beginPath()
+            ctx.strokeStyle = color
+            ctx.moveTo(x, y)
+            ctx.lineTo(x, y - 70)
+            ctx.lineTo(x + 30, y - 30)
+            ctx.lineTo(x + 60, y - 70)
+            ctx.lineTo(x + 60, y)
+            ctx.moveTo(x + 75, y)
+            ctx.lineTo(x + 95, y - 70)
+            ctx.lineTo(x + 115, y)
+            ctx.moveTo(x + 85, y - 35)
+            ctx.lineTo(x + 105, y - 35)
+            ctx.moveTo(x + 130, y)
+            ctx.lineTo(x + 130, y - 70)
+            ctx.arc(x + 130, y - 70 + 70 / 4, 70 / 4, Math.PI + (Math.PI / 2), Math.PI / 2)
+            ctx.moveTo(x + 130, y - 70 + 70 / 4 * 2)
+            ctx.lineTo(x + 150, y )
+            ctx.moveTo(x + 200, y - 70)
+            ctx.arc(x + 200, y - 35, 35, Math.PI + Math.PI / 2, Math.PI * 0.5, true)
+            ctx.moveTo(x + 285, y - 35)
+            ctx.arc(x + 250, y - 35, 35, 0, Math.PI * 2)
+            ctx.stroke()
+        }
+
+        Marco(150, 450, "brown")
+        Marco(150, 370, "green")
+        
+        
+
+        let Ampel = (x, y, groeßemal) =>
+        {
+            ctx.fillStyle = "black"
+            let groeße = 60 *  groeßemal
+
+            ctx.fillRect(x, y, groeße, groeße * 2)
+            fillCircle(x + groeße / 2, y, groeße / 2, Math.PI, Math.PI * 2, "black")
+            fillCircle(x + groeße / 2, y + groeße * 2, groeße / 2, 0, Math.PI, "black")
+            fillCircle(x + groeße / 2, y - groeße / 20, groeße / 2.6, 0, Math.PI * 2, "grey")
+            fillCircle(x + groeße / 2, y + groeße / 25, groeße / 2.6, 0, Math.PI * 2, "red")
+            fillCircle(x + groeße / 2, y + groeße / 1.15, groeße / 2.6, 0, Math.PI * 2, "grey")
+            fillCircle(x + groeße / 2, y + groeße / 1.04, groeße / 2.6, 0, Math.PI * 2, "yellow")
+            fillCircle(x + groeße / 2, y + groeße * 1.8, groeße / 2.6, 0, Math.PI * 2, "grey")
+            fillCircle(x + groeße / 2, y + groeße * 1.9, groeße / 2.6, 0, Math.PI * 2, "green")
+        }
+        Ampel(30, 50, 1)
+        Ampel(50, 300, 1)
+        Ampel(250, 50, 1)
+    </script>
+</body>
+</html>
